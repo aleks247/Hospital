@@ -1,8 +1,8 @@
 public class Patient {
-    int patientId;
-    String firstName;
-    String lastName;
-    int age;
+    private int patientId;
+    private String firstName;
+    private String lastName;
+    private int age;
 
     Patient(int patientId, String firstName, String lastName, int age){
         this.patientId = patientId;
