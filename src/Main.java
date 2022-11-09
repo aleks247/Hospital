@@ -1,41 +1,44 @@
 import java.util.Scanner;
 
 public class Main {
-    public static int choiceDoctorOrPatient() {
-        Scanner scanner = new Scanner(System.in);
-        int choice ;
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void printMenu() {
         System.out.println("Exit -> 0 ");
         System.out.println("Doctor -> 1 ");
         System.out.println("Patient -> 2");
         System.out.print("Choose your role : ");
-        choice = scanner.nextInt();
-        switch (choice) {
-            case 1:
-                entryForDoctors();
-            case 2:
-                patientEntrance();
-            case 0:
-                System.out.println("exit");
-            default:
-                System.out.println("Please enter a valid option ! ");
-                choiceDoctorOrPatient();
-        }
-        return choice;
     }
 
     public static void entryForDoctors() {
+        System.out.println("Enter Doctor ID : ");
+        int iD = scanner.nextInt();
 
 
     }
-    public static void patientEntrance() {
 
+    public static void patientEntrance() {
 
     }
 
     public static void main(String[] args) {
-
-        
-        choiceDoctorOrPatient();
-        
+        while (true) {
+            printMenu();
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    entryForDoctors();
+                    break;
+                case 2:
+                    patientEntrance();
+                    break;
+                case 0:
+                    System.out.println("exit");
+                    break;
+                default:
+                    System.out.println("Please enter a valid option ! ");
+                    break;
+            }
+        }
     }
 }
