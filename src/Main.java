@@ -11,9 +11,6 @@ public class Main {
     }
 
     public static void entryForDoctors() {
-        System.out.println("Enter Doctor ID : ");
-        int iD = scanner.nextInt();
-
 
     }
 
@@ -42,3 +39,4 @@ public class Main {
         }
     }
 }
+
