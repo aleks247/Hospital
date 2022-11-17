@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -14,13 +16,13 @@ public class Main {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                checkingAvailableDoctors();
+                readingAvailableDoctоrs();
                 break;
             case 2:
                 patientEntrance();
                 break;
             case 0:
-                System.out.println("exit");
+                System.out.println("EXIT");
                 break;
             default:
                 System.out.println("Please enter a valid option ! ");
@@ -29,31 +31,31 @@ public class Main {
         }
     }
 
-    public static void checkingAvailableDoctors() {
+    public static void readingAvailableDoctоrs() {
         File doctorsFile = new File("doctors.txt");
         try {
             FileReader fileReader = new FileReader(doctorsFile);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                String[] words = line.split(",");
-                doctorspurvired(words);
+                String[] doctorInf = line.split(",");
+                creationListExcellentDoctors(doctorInf);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
-public static void doctorspurvired(String[]words){
-
-    for (int i = 0; i < words.length; i++) {
-        System.out.println(words[i]);
-       // Doctor doctor=new Doctor((Integer.getInteger(words[i]),words[i],words[i],words[i],words[i]);
-
-
+    public static List<Doctor> creationListExcellentDoctors(String[] doctorInf) {
+            List<Doctor> doctorsList = new ArrayList<>();
+            Doctor doctor = new Doctor(Integer.valueOf(doctorInf[0]), doctorInf[1], doctorInf[2], doctorInf[3]);
+            doctorsList.add(doctor);
+            for (int i = 0; i < doctorsList.size(); i++) {
+                System.out.println(doctorsList.get(i));
+            }
+        return doctorsList;
     }
 
-}
     public static void entryForDoctors() {
 
     }
@@ -64,6 +66,12 @@ public static void doctorspurvired(String[]words){
 
     public static void main(String[] args) {
         printMenu();
+
+
+
+
+
+
 
     }
 }
