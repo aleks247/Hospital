@@ -25,6 +25,16 @@ public class Patient implements Login{
     public void login() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "patientId=" + patientId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
 //Вход като пациент:
 //	•	Системата подканва потребителя да въведе своето уникално patient_id и първото си име 
