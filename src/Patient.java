@@ -12,6 +12,22 @@ public class Patient implements Login{
         this.age = age;
     }
 
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public void seeAllHours(){
 
     }
