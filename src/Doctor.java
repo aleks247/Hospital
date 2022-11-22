@@ -14,6 +14,15 @@ public class Doctor implements Login{
         this.speciality = speciality;
     }
 
+    public void groupingOfPatients(){
+
+    }
+    public void seeAllHours(){
+
+    }
+    public void sortAllSavedClasses(){
+
+    }
     public int getDoctorId() {
         return doctorId;
     }
