@@ -1,3 +1,5 @@
+
+
 public class Doctor implements Login{
     private int doctorId;
     private String firstName;
@@ -10,6 +12,22 @@ public class Doctor implements Login{
         this.firstName = firstName;
         this.lastName = lastName;
         this.speciality = speciality;
+    }
+
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     @Override
