@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 public class Patient implements Login{
     private int patientId;
@@ -24,6 +24,16 @@ public class Patient implements Login{
     @Override
     public void login() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "patientId=" + patientId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
 //Вход като пациент:
