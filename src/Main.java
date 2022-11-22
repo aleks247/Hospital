@@ -1,7 +1,5 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -19,30 +17,28 @@ public class Main {
     public static void selectionMenu() {
         int choice = scanner.nextInt();
         switch (choice) {
-            case 1:
+            case 1 -> {
                 String fileNameDoctors = "doctors.txt";  //doctors.csv
                 readingAvailableInformation(fileNameDoctors);
-                break;
-            case 2:
-                String fileNamePatient = "patients.txt";  //patient.csv
+            }
+            case 2 -> {
+                String fileNamePatient = "patients.csv";  //patient.csv
                 readingAvailableInformation(fileNamePatient);
-                break;
-            case 3:
+            }
+            case 3 -> {
                 String fileAppointments = "appointments.txt"; //appointments.csv
                 readingAvailableInformation(fileAppointments);
-                break;
-            case 0:
-                System.out.println("EXIT !");
-                break;
-            default:
+            }
+            case 0 -> System.out.println("EXIT !");
+            default -> {
                 System.out.println("Please enter a valid option ! ");
                 printMenu();
-                break;
+            }
         }
     }
 
     public static void readingAvailableInformation(String fileName) { //четене от файл и разделяне по запетайки и изпращане на инф
-        try {                                                         //към метода за създаване на обекти
+        try {//към метода за създаване на обекти
            FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
@@ -50,14 +46,14 @@ public class Main {
                 String[] personalInformation = line.split(",");
                 if (fileName.equalsIgnoreCase("doctors.txt")) { //doctors.csv
                     creationListExcellentDoctors(personalInformation);
-                } else if (fileName.equalsIgnoreCase("patients.txt")) { //patient.csv
+                } else if (fileName.equalsIgnoreCase("patients.csv")) { //patient.csv
                     createListExcellentPatients(personalInformation);
                 } else {
                     createListExcellentAppointment(personalInformation); //appointments.csv
                 }
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e + "Error");
         }
     }
 
@@ -65,12 +61,9 @@ public class Main {
         Doctor doctor = new Doctor(Integer.valueOf(doctorInf[0]), doctorInf[1], doctorInf[2], doctorInf[3]);
         System.out.println(doctor);
         entryForDoctors(doctor);
-
-
     }
 
     public static void createListExcellentPatients(String[] PatientInf) { //създаване на обекти от подадена инф от метода за четене
-
         Patient patient = new Patient(Integer.valueOf(PatientInf[0]), PatientInf[1], PatientInf[2], Integer.valueOf(PatientInf[3]));
         System.out.println(patient);
     }
@@ -105,9 +98,7 @@ public class Main {
 
     public static void main(String[] args) {
         printMenu();
-
-
-
+        
     }
 }
 
