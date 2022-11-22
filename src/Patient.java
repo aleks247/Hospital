@@ -37,6 +37,9 @@ public class Patient implements Login{
     public void declineRecordedTime(int appointmentId){
 
     }
+    public void sortAllSavedClasses(){
+
+    }
     @Override
     public void login() {
 

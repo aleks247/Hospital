@@ -89,13 +89,29 @@ public class Main {
         String name = scanner.next();
         for (int i = 0; i < doctorsList.size(); i++) {
             if (doctorsList.get(i).getDoctorId() == id && doctorsList.get(i).getFirstName().equalsIgnoreCase(name)) {
-                doctorsMenu();
+                doctorsMenu(id);
             }
         }
     }
 
-    public static void doctorsMenu() {
-        System.out.println("DOCTORS MENU LOG");
+    public static void doctorsMenu(int id) {
+        System.out.println("to group patients -> 1 ");
+        System.out.println("Sort by all reserved appointments of doctor -> 2");
+        System.out.println("see all hours -> 3");
+        int choise = scanner.nextInt();
+        switch (choise) {
+            case 1:
+                doctorsList.get(id).groupingOfPatients();
+                break;
+            case 2:
+                doctorsList.get(id).sortAllSavedClasses();
+                break;
+            case 3:
+                doctorsList.get(id).seeAllHours();
+                break;
+            default:
+                patientMenu(id);
+        }
 
     }
 
@@ -110,7 +126,6 @@ public class Main {
             }
         }
     }
-
 
     public static void patientMenu(int id) {
         System.out.println("to change date for viewing -> 1 ");
@@ -130,14 +145,10 @@ public class Main {
             default:
                 patientMenu(id);
         }
-
-
     }
 
     public static void main(String[] args) {
         printMenu();
-
-
     }
 }
 
