@@ -1,6 +1,4 @@
-
-
-public class Doctor implements Login{
+public class Doctor implements Login {
     private int doctorId;
     private String firstName;
     private String lastName;
@@ -14,22 +12,23 @@ public class Doctor implements Login{
         this.speciality = speciality;
     }
 
-    public void groupingOfPatients(){
+    public void groupingOfPatients() {
 
     }
-    public void seeAllHours(){
+
+    public void seeAllHours() {
 
     }
-    public void sortAllSavedClasses(){
+
+    public void sortAllSavedClasses() {
 
     }
+
     public int getDoctorId() {
         return doctorId;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
-    }
+    public void setDoctorId(int doctorId) { this.doctorId = doctorId; }
 
     public String getFirstName() {
         return firstName;
@@ -41,12 +40,7 @@ public class Doctor implements Login{
 
     @Override
     public String toString() {
-        return "Doctor{" +
-                "doctorId=" + doctorId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", speciality='" + speciality + '\'' +
-                '}';
+        return "Doctor{" + "doctorId=" + doctorId + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", speciality='" + speciality + '\'' + '}';
     }
 
     @Override
