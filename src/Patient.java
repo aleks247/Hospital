@@ -3,6 +3,7 @@ public class Patient implements Login{
     private String firstName;
     private String lastName;
     private int age;
+    
     Patient(int patientId, String firstName, String lastName, int age){
         this.patientId = patientId;
         this.firstName = firstName;
