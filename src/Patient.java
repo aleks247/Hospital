@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Patient implements Login{
     private int patientId;
     private String firstName;
@@ -24,9 +22,7 @@ public class Patient implements Login{
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
     public void seeAllHours(){
 
@@ -40,6 +36,7 @@ public class Patient implements Login{
     public void sortAllSavedClasses(){
 
     }
+
     @Override
     public void login() {
 
@@ -56,9 +53,9 @@ public class Patient implements Login{
     }
 }
 //Вход като пациент:
-//	•	Системата подканва потребителя да въведе своето уникално patient_id и първото си име 
+//	•	Системата подканва потребителя да въведе своето уникално patient_id и първото си име
 //	•	При неуспешен вход, потребителят отново се поканва да въведе своите данни до успешно въведена комбинация
-//	•	При успешен вход (пациент с такова потребителско име и парола съществува) на потребителя се дава възможност за следните операции: 
+//	•	При успешен вход (пациент с такова потребителско име и парола съществува) на потребителя се дава възможност за следните операции:
 //	◦	Визуализация на всички записани часове за текущия пациент !!
 //	◦	Промяна на датата/часа на записан час (по подадено appointment_id)
 //	◦	Отказване от записан час (по подадено appointment_id)
