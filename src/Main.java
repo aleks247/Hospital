@@ -19,22 +19,25 @@ public class Main {
         selectionMenu();
     }
 
+    public static void loadListsOfObjects(){
+        String fileNameDoctors = "doctors.csv";
+        readingAvailableInformation(fileNameDoctors);
+
+        String fileNamePatient = "patients.csv";
+        readingAvailableInformation(fileNamePatient);
+
+        String filenameAppointment = "appointments.csv";
+        readingAvailableInformation(filenameAppointment);
+    }
+
     public static void selectionMenu() {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1 -> {
-                String fileNameDoctors = "doctors.csv";
-                readingAvailableInformation(fileNameDoctors);
                 entryForDoctor();
             }
             case 2 -> {
-                String fileNamePatient = "patients.csv";
-                readingAvailableInformation(fileNamePatient);
                 entryForPatient();
-            }
-            case 3 -> {
-                String fileAppointments = "appointments.csv";
-                readingAvailableInformation(fileAppointments);
             }
             case 0 -> {
                 System.out.println("EXIT !");
@@ -132,8 +135,8 @@ public class Main {
             System.out.println("entry name");
             String name = scanner.next();
 
-            for (int i = 0; i < doctorsList.size(); i++) {
-                if (doctorsList.get(i).getDoctorId() == id && doctorsList.get(i).getFirstName().equalsIgnoreCase(name)) {
+            for (int i = 0; i < patientList.size(); i++) {
+                if (patientList.get(i).getPatientId() == id && patientList.get(i).getFirstName().equalsIgnoreCase(name)) {
                     patientMenu(id);
                     successfulLogin = true;
                 }
@@ -157,8 +160,8 @@ public class Main {
             case 2 -> {
                 patientList.get(id).declineRecordedTime(id);
             }
-            case 3 -> {
-                patientList.get(id).seeAllHours();
+            case 3 -> {// Готово
+                patientList.get(id).seeAllHours(appointmentList);
             }
             default -> {
                 patientMenu(id);

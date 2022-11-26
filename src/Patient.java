@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Patient implements Login{
     private int patientId;
     private String firstName;
@@ -25,8 +27,12 @@ public class Patient implements Login{
 
     public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public void seeAllHours(){
-
+    public void seeAllHours(List<Appointment> appointmentList){
+        for (int i = 0; i < appointmentList.size(); i++) {
+            if (appointmentList.get(i).getPatient_id() == getPatientId()-1){
+                System.out.println(appointmentList.get(i));
+            }
+        }
     }
     public void changeDateForViewing(int appointmentId){
 

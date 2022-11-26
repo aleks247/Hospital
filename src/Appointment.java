@@ -16,9 +16,11 @@ public class Appointment {
         this.doctorId = doctorId;
     }
 
+    public int getPatient_id() { return patient_id; }
+
     @Override
     public String toString() {
-        return "Аppointment{" +
+        return "Appointment{" +
                 "appointmentId=" + appointmentId +
                 ", patient_id=" + patient_id +
                 ", typeOfExamination='" + typeOfExamination + '\'' +
