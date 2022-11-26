@@ -155,10 +155,10 @@ public class Main {
 
         switch (choice) {
             case 1 -> {
-                patientList.get(id).changeDateForViewing(id);
+                patientList.get(id).changeDateForViewing(appointmentList);
             }
             case 2 -> {
-                patientList.get(id).declineRecordedTime(id);
+                patientList.get(id).declineRecordedTime(appointmentList);
             }
             case 3 -> {// Готово
                 patientList.get(id).seeAllHours(appointmentList);
@@ -170,6 +170,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        loadListsOfObjects();
         printMenu();
     }
 }

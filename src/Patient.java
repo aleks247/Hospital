@@ -1,10 +1,14 @@
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Patient implements Login{
     private int patientId;
     private String firstName;
     private String lastName;
     private int age;
+
+    private static Scanner scan = new Scanner(System.in);
     
     Patient(int patientId, String firstName, String lastName, int age){
         this.patientId = patientId;
@@ -17,15 +21,9 @@ public class Patient implements Login{
         return patientId;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
-    }
-
     public String getFirstName() {
         return firstName;
     }
-
-    public void setFirstName(String firstName) { this.firstName = firstName; }
 
     public void seeAllHours(List<Appointment> appointmentList){
         for (int i = 0; i < appointmentList.size(); i++) {
@@ -34,14 +32,24 @@ public class Patient implements Login{
             }
         }
     }
-    public void changeDateForViewing(int appointmentId){
 
+    private Object createListOfOnePatientAppointments(List<Appointment>appointmentList, int appointmentID){
+        Appointment appointment = null;
+        for (int i = 0; i < appointmentList.size(); i++) {
+            if(appointmentList.get(i).getAppointmentId() == appointmentID){
+                if (appointmentList.get(i).getPatient_id() == getPatientId()-1){
+                    appointment = appointmentList.get(i);
+                }else { System.out.println("This appointment isn't on your ID !"); }
+            }else { System.out.println("This appointment isn't existing !"); }
+        }return appointment;
     }
-    public void declineRecordedTime(int appointmentId){
 
+    public void changeDateForViewing(List<Appointment>appointmentList){
     }
-    public void sortAllSavedClasses(){
-
+    public void declineRecordedTime(List<Appointment>appointmentList){
+        System.out.println("Enter appointment id: ");
+        int appointmentId = scan.nextInt();
+        createListOfOnePatientAppointments(appointmentList, appointmentId);
     }
 
     @Override

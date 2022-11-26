@@ -18,6 +18,8 @@ public class Appointment {
 
     public int getPatient_id() { return patient_id; }
 
+    public int getAppointmentId() { return appointmentId; }
+
     @Override
     public String toString() {
         return "Appointment{" +
