@@ -155,7 +155,12 @@ public class Main {
 
         switch (choice) {
             case 1 -> {
-                patientList.get(id).changeDateForViewing(appointmentList);
+                try {
+                    patientList.get(id).changeDateForViewing(appointmentList);
+                }catch (Exception e){
+                    e.getStackTrace();
+                }
+
             }
             case 2 -> {
                 patientList.get(id).declineRecordedTime(appointmentList);
