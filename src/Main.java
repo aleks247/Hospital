@@ -19,30 +19,33 @@ public class Main {
         selectionMenu();
     }
 
+    public static void loadListsOfObjects() {
+        String fileNameDoctors = "doctors.csv";
+        readingAvailableInformation(fileNameDoctors);
+
+        String fileNamePatient = "patients.csv";
+        readingAvailableInformation(fileNamePatient);
+
+        String filenameAppointment = "appointments.csv";
+        readingAvailableInformation(filenameAppointment);
+    }
+
     public static void selectionMenu() {
         int choice = scanner.nextInt();
         switch (choice) {
-            case 1:
-                String fileNameDoctors = "doctors.csv";
-                readingAvailableInformation(fileNameDoctors);
+            case 1 -> {
                 entryForDoctor();
-                break;
-            case 2:
-                String fileNamePatient = "patients.csv";
-                readingAvailableInformation(fileNamePatient);
+            }
+            case 2 -> {
                 entryForPatient();
-                break;
-            case 3:
-                String fileAppointments = "appointments.csv";
-                readingAvailableInformation(fileAppointments);
-                break;
-            case 0:
+            }
+            case 0 -> {
                 System.out.println("EXIT !");
-                break;
-            default:
+            }
+            default -> {
                 System.out.println("Please enter a valid option ! ");
                 printMenu();
-                break;
+            }
         }
     }
 
@@ -51,6 +54,7 @@ public class Main {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
+
             while ((line = bufferedReader.readLine()) != null) {
                 String[] personalInformation = line.split(",");
                 if (fileName.equalsIgnoreCase("doctors.csv")) {
@@ -62,7 +66,7 @@ public class Main {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e + "Error");
         }
     }
 
@@ -81,74 +85,105 @@ public class Main {
         appointmentList.add(appointment);
     }
 
-
     public static void entryForDoctor() {
-        System.out.println("Entry ID number: ");
-        int id = scanner.nextInt();
-        System.out.println("Entry name: ");
-        String name = scanner.next();
-        for (int i = 0; i < doctorsList.size(); i++) {
-            if (doctorsList.get(i).getDoctorId() == id && doctorsList.get(i).getFirstName().equalsIgnoreCase(name)) {
-                doctorsMenu(id);
+        boolean successfulLogin = false;
+        while (!successfulLogin) {
+            System.out.println("Entry ID number: ");
+            int id = scanner.nextInt();
+            System.out.println("Entry name: ");
+            String name = scanner.next();
+
+            for (int i = 0; i < doctorsList.size(); i++) {
+                if (doctorsList.get(i).getDoctorId() == id && doctorsList.get(i).getFirstName().equalsIgnoreCase(name)) {
+                    doctorsMenu(id);
+                    successfulLogin = true;
+                }
+            }
+            if (!successfulLogin) {
+                System.out.println("Invalid doctor data...");
             }
         }
     }
 
     public static void doctorsMenu(int id) {
+        System.out.println("to return to selection menu -> 0 ");
         System.out.println("to group patients -> 1 ");
         System.out.println("Sort by all reserved appointments of doctor -> 2");
         System.out.println("see all hours -> 3");
-        int choise = scanner.nextInt();
-        switch (choise) {
-            case 1:
-                doctorsList.get(id).groupingOfPatients();
-                break;
-            case 2:
-                doctorsList.get(id).sortAllSavedClasses();
-                break;
-            case 3:
-                doctorsList.get(id).seeAllHours();
-                break;
-            default:
-                patientMenu(id);
-        }
+        int choice = scanner.nextInt();
 
+        switch (choice) {
+            case 1 -> {
+                doctorsList.get(id).groupingOfPatients(appointmentList,id);
+                doctorsMenu(id);
+            }
+            case 2 -> {
+                doctorsList.get(id).sortAllSavedClasses(appointmentList,id);
+                doctorsMenu(id);
+            }
+            case 3 -> {
+                doctorsList.get(id).seeAllHours(appointmentList, id);
+                doctorsMenu(id);
+            }
+            case 0 -> printMenu();
+
+            default -> doctorsMenu(id);
+
+        }
     }
 
     public static void entryForPatient() {
-        System.out.println("Entry ID");
-        int id = scanner.nextInt();
-        System.out.println("entry name");
-        String name = scanner.next();
-        for (int i = 0; i < doctorsList.size(); i++) {
-            if (doctorsList.get(i).getDoctorId() == id && doctorsList.get(i).getFirstName().equalsIgnoreCase(name)) {
-                patientMenu(id);
+        boolean successfulLogin = false;
+        while (!successfulLogin) {
+            System.out.println("Entry ID");
+            int id = scanner.nextInt();
+            System.out.println("entry name");
+            String name = scanner.next();
+
+            for (int i = 0; i < patientList.size(); i++) {
+                if (patientList.get(i).getPatientId() == id && patientList.get(i).getFirstName().equalsIgnoreCase(name)) {
+                    patientMenu(id);
+                    successfulLogin = true;
+                }
+            }
+            if (!successfulLogin) {
+                System.out.println("Invalid patient data...");
             }
         }
     }
 
     public static void patientMenu(int id) {
+        System.out.println("to return to selection menu -> 0 ");
         System.out.println("to change date for viewing -> 1 ");
         System.out.println("decline recorded Time -> 2");
         System.out.println("see all hours -> 3");
-        int choise = scanner.nextInt();
-        switch (choise) {
-            case 1:
-                patientList.get(id).changeDateForViewing(id);
-                break;
-            case 2:
-                patientList.get(id).declineRecordedTime(id);
-                break;
-            case 3:
-                patientList.get(id).seeAllHours();
-                break;
-            default:
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1 -> {
+                try {
+                    patientList.get(id).changeDateForViewing(appointmentList);
+                } catch (Exception e) {
+                    e.getStackTrace();
+                }
+            }
+            case 2 -> {
+                patientList.get(id).declineRecordedTime(appointmentList);
+                doctorsMenu(id);
+            }
+            case 3 -> {// Готово
+                patientList.get(id).seeAllHours(appointmentList,id);
+                doctorsMenu(id);
+            }
+            case 0 -> printMenu();
+            default -> {
                 patientMenu(id);
+            }
         }
     }
 
     public static void main(String[] args) {
+        loadListsOfObjects();
         printMenu();
     }
 }
-

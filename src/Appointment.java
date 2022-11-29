@@ -1,4 +1,9 @@
-public class Appointment {
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Appointment implements Comparable<Appointment>{
 
     private int appointmentId;
     private int patient_id;
@@ -7,7 +12,24 @@ public class Appointment {
     private String time;
     private int doctorId;
 
-      Appointment(int appointmentId, int patient_id, String typeOfExamination, String date, String time, int doctorId) {
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public int getPatient_id() {
+        return patient_id;
+    }
+
+    public int getAppointmentId() {
+        return appointmentId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+
+    Appointment(int appointmentId, int patient_id, String typeOfExamination, String date, String time, int doctorId) {
         this.appointmentId = appointmentId;
         this.patient_id = patient_id;
         this.typeOfExamination = typeOfExamination;
@@ -27,4 +49,22 @@ public class Appointment {
                 ", doctorId=" + doctorId +
                 '}';
     }
+
+    public void sortID(List<Appointment>appointmentList){
+        List<Appointment>sortedListAppointment=new ArrayList<>();
+        for (int i = 0; i <appointmentList.size() ; i++) {
+            sortedListAppointment.add(appointmentList.get(i));
+        }
+        Collections.sort(sortedListAppointment);
+        for (int i = 0; i <sortedListAppointment.size() ; i++) {
+            System.out.println(sortedListAppointment.get(i));
+        }
+    }
+
+    @Override
+    public int compareTo(Appointment a) {
+        return this.patient_id-a.getPatient_id();
+    }
+
+
 }

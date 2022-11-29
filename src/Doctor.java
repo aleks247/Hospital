@@ -1,6 +1,8 @@
 
 
-public class Doctor implements Login{
+import java.util.List;
+
+public class Doctor implements AllHours, Sortable {
     private int doctorId;
     private String firstName;
     private String lastName;
@@ -14,29 +16,41 @@ public class Doctor implements Login{
         this.speciality = speciality;
     }
 
-    public void groupingOfPatients(){
-
-    }
-    public void seeAllHours(){
-
-    }
-    public void sortAllSavedClasses(){
-
-    }
     public int getDoctorId() {
         return doctorId;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
-    }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+
+    @Override
+    public void seeAllHours(List<Appointment> appointmentList, int doctorId) {
+        for (int i = 0; i < appointmentList.size(); i++) {
+            if (appointmentList.get(i).getDoctorId() == doctorId) {
+                System.out.println(appointmentList.get(i));
+            }
+        }
+        System.out.println();
+    }
+
+
+    @Override
+    public void sortAllSavedClasses(List<Appointment> appointmentList, int id) {
+        System.out.println("to Patient ID: a-z -> 1");
+        System.out.println("to DATE: -> 2 ");
+
+        appointmentList.get(id).sortID(appointmentList);
+
+
+
+    }
+
+    @Override
+    public void groupingOfPatients(List<Appointment> appointmentList, int id) {
+
     }
 
     @Override
@@ -49,8 +63,5 @@ public class Doctor implements Login{
                 '}';
     }
 
-    @Override
-    public void login() {
 
-    }
 }
