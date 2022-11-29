@@ -27,10 +27,15 @@ public class Patient implements Login {
     }
 
     public void seeAllHours(List<Appointment> appointmentList) {
+        boolean isThereAppointment = false;
         for (int i = 0; i < appointmentList.size(); i++) {
             if (appointmentList.get(i).getPatient_id() == getPatientId() - 1) {
+                isThereAppointment = true;
                 System.out.println(appointmentList.get(i));
             }
+        }
+        if (!isThereAppointment){
+            System.out.println("There aren't any appointments !");
         }
     }
 
