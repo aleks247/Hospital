@@ -14,12 +14,11 @@ public class Main {
         System.out.println("Exit -> 0 ");
         System.out.println("Doctor -> 1 ");
         System.out.println("Patient -> 2");
-        System.out.println("Appointments -> 3");
         System.out.print("Choose your role : ");
         selectionMenu();
     }
 
-    public static void loadListsOfObjects(){
+    public static void loadListsOfObjects() {
         String fileNameDoctors = "doctors.csv";
         readingAvailableInformation(fileNameDoctors);
 
@@ -41,6 +40,7 @@ public class Main {
             }
             case 0 -> {
                 System.out.println("EXIT !");
+                System.exit(0);
             }
             default -> {
                 System.out.println("Please enter a valid option ! ");
@@ -88,9 +88,9 @@ public class Main {
     public static void entryForDoctor() {
         boolean successfulLogin = false;
         while (!successfulLogin) {
-            System.out.println("Entry ID number: ");
+            System.out.println("Enter ID number: ");
             int id = scanner.nextInt();
-            System.out.println("Entry name: ");
+            System.out.println("Enter name: ");
             String name = scanner.next();
 
             for (int i = 0; i < doctorsList.size(); i++) {
@@ -114,15 +114,18 @@ public class Main {
         switch (choice) {
             case 1 -> {
                 doctorsList.get(id).groupingOfPatients();
+                doctorsMenu(id);
             }
             case 2 -> {
                 doctorsList.get(id).sortAllSavedClasses();
+                doctorsMenu(id);
             }
             case 3 -> {
                 doctorsList.get(id).seeAllHours();
+                doctorsMenu(id);
             }
             default -> {
-                patientMenu(id);
+                doctorsMenu(id);
             }
         }
     }
@@ -130,9 +133,9 @@ public class Main {
     public static void entryForPatient() {
         boolean successfulLogin = false;
         while (!successfulLogin) {
-            System.out.println("Entry ID");
+            System.out.println("Enter ID: ");
             int id = scanner.nextInt();
-            System.out.println("entry name");
+            System.out.println("Enter name: ");
             String name = scanner.next();
 
             for (int i = 0; i < patientList.size(); i++) {
@@ -141,27 +144,30 @@ public class Main {
                     successfulLogin = true;
                 }
             }
-            if (!successfulLogin){
+            if (!successfulLogin) {
                 System.out.println("Invalid patient data...");
             }
         }
     }
 
     public static void patientMenu(int id) {
-        System.out.println("to change date for viewing -> 1 ");
-        System.out.println("decline recorded Time -> 2");
-        System.out.println("see all hours -> 3");
+        System.out.println("To change date for appointment -> 1 ");
+        System.out.println("To cancel appointment -> 2");
+        System.out.println("To see all appointments -> 3");
         int choice = scanner.nextInt();
 
         switch (choice) {
             case 1 -> {
-                    patientList.get(id).changeDateForAppointment(appointmentList);
+                patientList.get(id).changeDateForAppointment(appointmentList);
+                patientMenu(id);
             }
             case 2 -> {
                 patientList.get(id).declineRecordedTime(appointmentList);
+                patientMenu(id);
             }
-            case 3 -> {// Готово
+            case 3 -> {
                 patientList.get(id).seeAllHours(appointmentList);
+                patientMenu(id);
             }
             default -> {
                 patientMenu(id);
